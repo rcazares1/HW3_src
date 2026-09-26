@@ -1,4 +1,6 @@
-// Cube Section
+
+// -----------------Cube Section--------------------
+
 const cube_positions = new Float32Array([
   -1, -1, -1,  // 0
    1, -1, -1,  // 1
@@ -11,7 +13,7 @@ const cube_positions = new Float32Array([
 ]);
 
 const cube_colors = new Float32Array([
-  1,0,0,  0,1,0,  0,0,1, 1,1,0, 1,0,1, 0,1,1, 1,1,0, 1,0,1
+  1,0,0, 0,1,0, 0,0,1, 1,1,0, 1,0,1, 0,1,1, 1,1,0, 1,0,1
 ]);
 
 
@@ -30,7 +32,7 @@ const cube_indices = new Uint16Array([
   0, 4, 7,   0, 7, 3,
 ]);
 
-// Pyramid Section
+// -----------------Pyramid Section-----------------
 
 const pyramid_positions = new Float32Array([
   -1, -1, -1,  // 0 
@@ -41,7 +43,7 @@ const pyramid_positions = new Float32Array([
 ]);
 
 const pyramid_colors = new Float32Array([
-  1,0,0,  0,1,0,  0,0,1,  1,1,0,  1,0,1
+  1,0,0, 0,1,0, 0,0,1, 1,1,0, 1,0,1
 ]);
 
 const pyramid_indices = new Uint16Array([
@@ -54,8 +56,40 @@ const pyramid_indices = new Uint16Array([
   3, 0, 4
 ]);
 
-// Prism Section
+// -----------------Prism Section-------------------
 
-let positions = pyramid_positions;
-let colors = pyramid_colors;
-let indices = pyramid_indices;
+const prism_positions = new Float32Array([
+  // back face
+  -1, -1, -1,  // 0
+   1, -1, -1,  // 1
+   0,  1, -1,  // 2
+
+  // front face
+  -1, -1,  1,  // 3
+   1, -1,  1,  // 4
+   0,  1,  1   // 5
+]);
+
+const prism_colors = new Float32Array([
+  1,0,0, 0,1,0, 0,0,1, 1,1,0, 1,0,1, 0,1,1
+]);
+
+const prism_indices = new Uint16Array([
+  // back face
+  0, 1, 2,
+  // front face
+  3, 4, 5,
+  // sides
+  0, 1, 4,   0, 4, 3,
+  1, 2, 5,   1, 5, 4,
+  2, 0, 3,   2, 3, 5
+]);
+
+let positions = prism_positions;
+let colors = prism_colors;
+let indices = prism_indices;
+
+// Returns the positions, colors, and indices of a passed shape
+// function returnShape (shape) {
+  
+// }

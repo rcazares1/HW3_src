@@ -118,6 +118,9 @@ void main() {
     let program, posLoc, colorLoc, timeLoc, uMVM, uPM, uMTM;
     let vbo, nbo, ibo;
 
+    // Update the primitive shape that will be loaded
+    updatePrimitive("cube");
+
     // Buffers
     function initBuffers() {
       vbo = gl.createBuffer();

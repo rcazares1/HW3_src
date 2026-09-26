@@ -1,5 +1,6 @@
+// ------------ Start of Primitives Section ------------ //
 
-// -----------------Cube Section--------------------
+// ----------------- Cube --------------------
 
 const cube_positions = new Float32Array([
   -1, -1, -1,  // 0
@@ -32,7 +33,7 @@ const cube_indices = new Uint16Array([
   0, 4, 7,   0, 7, 3,
 ]);
 
-// -----------------Pyramid Section-----------------
+// ----------------- Pyramid -----------------
 
 const pyramid_positions = new Float32Array([
   -1, -1, -1,  // 0 
@@ -56,7 +57,7 @@ const pyramid_indices = new Uint16Array([
   3, 0, 4
 ]);
 
-// -----------------Prism Section-------------------
+// ----------------- Prism -------------------
 
 const prism_positions = new Float32Array([
   // back face
@@ -85,11 +86,30 @@ const prism_indices = new Uint16Array([
   2, 0, 3,   2, 3, 5
 ]);
 
-let positions = prism_positions;
-let colors = prism_colors;
-let indices = prism_indices;
+// ------------- End of Primitives Section ------------- //
 
-// Returns the positions, colors, and indices of a passed shape
-// function returnShape (shape) {
-  
-// }
+// By default set data to cube
+let positions = cube_positions;
+let colors = cube_colors;
+let indices = cube_indices;
+
+// Returns the positions, colors, and indices of a passed in primitive shape
+function updatePrimitive(shape) {
+  switch (shape) {
+    case "cube":
+      [positions, colors, indices] = [cube_positions, cube_colors, cube_indices];
+      break;
+
+    case "pyramid":
+      [positions, colors, indices] = [pyramid_positions, pyramid_colors, pyramid_indices];
+      break;
+
+    case "prism":
+      [positions, colors, indices] = [prism_positions, prism_colors, prism_indices];
+      break;
+
+    // No update. May happen if new button is added for a new shape.
+    default:
+      break;
+  }
+}

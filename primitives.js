@@ -1,5 +1,5 @@
-// cube
-const positions = new Float32Array([
+// Cube Section
+const cube_positions = new Float32Array([
   -1, -1, -1,  // 0
    1, -1, -1,  // 1
    1,  1, -1,  // 2
@@ -10,12 +10,12 @@ const positions = new Float32Array([
   -1,  1,  1   // 7
 ]);
 
-const colors = new Float32Array([
+const cube_colors = new Float32Array([
   1,0,0,  0,1,0,  0,0,1, 1,1,0, 1,0,1, 0,1,1, 1,1,0, 1,0,1
 ]);
 
 
-const indices = new Uint16Array([
+const cube_indices = new Uint16Array([
   // Front
   4, 5, 6,   4, 6, 7,
   // Back
@@ -29,3 +29,33 @@ const indices = new Uint16Array([
   // Left
   0, 4, 7,   0, 7, 3,
 ]);
+
+// Pyramid Section
+
+const pyramid_positions = new Float32Array([
+  -1, -1, -1,  // 0 
+   1, -1, -1,  // 1
+   1, -1,  1,  // 2
+  -1, -1,  1,  // 3
+   0,  1,  0   // 4 
+]);
+
+const pyramid_colors = new Float32Array([
+  1,0,0,  0,1,0,  0,0,1,  1,1,0,  1,0,1
+]);
+
+const pyramid_indices = new Uint16Array([
+  // Bottom
+  0, 2, 1,   0, 3, 2,
+  // sides (all with 4 since that is the top of point)
+  0, 1, 4,
+  1, 2, 4,
+  2, 3, 4,
+  3, 0, 4
+]);
+
+// Prism Section
+
+let positions = pyramid_positions;
+let colors = pyramid_colors;
+let indices = pyramid_indices;

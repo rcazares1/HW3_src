@@ -126,21 +126,27 @@ void main() {
     let program, posLoc, colorLoc, timeLoc, uMVM, uPM, uMTM;
     let vbo, nbo, ibo;
 
-    // Update the primitive shape that will be loaded
-    updatePrimitive("cube");
+    // Load / Reload the most recent primitive shape buffers
+    function reloadPrimitive(shape) {
+      updatePrimitive(shape);
+
+      // Reload buffers for the most recent shape of program
+      gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+      gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, nbo);
+      gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
+
+      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
+      gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
+    }
 
     // Buffers
     function initBuffers() {
       vbo = gl.createBuffer();
-      gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
-      gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
-
       nbo = gl.createBuffer();
-      gl.bindBuffer(gl.ARRAY_BUFFER, nbo);
-      gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
-
       ibo = gl.createBuffer();
-      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo); gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
+      reloadPrimitive("cube"); // default state
     }
     initBuffers();
 

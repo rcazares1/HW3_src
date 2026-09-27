@@ -193,6 +193,11 @@ void main() {
       }
     });
 
+    // Update primitive shape based on button pressed
+    document.getElementById('button_cube').onclick = () => reloadPrimitive("cube");
+    document.getElementById('button_pyramid').onclick = () => reloadPrimitive("pyramid");
+    document.getElementById('button_prism').onclick = () => reloadPrimitive("prism");
+
 
     // Projection setup
     let fov = Math.PI / 4, aspect = canvas.width / canvas.height, zNear = 0.1, zFar = 100;

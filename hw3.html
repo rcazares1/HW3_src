@@ -62,6 +62,33 @@ Press F12 to see the console for debugging.</p>
 in vec3 aPosition;
 in vec3 aColor;
 
+// The following functions are almost a direct copy+modification of HW2 but an extra dimension was added for 3D shapes:
+// TODO: Update all functions into transformations.js
+
+// Linear transformation to scale a 3D object.
+mat4 scale(float sx, float sy, float sz) {
+  return mat4( sx, 0.0, 0.0, 0.0,
+              0.0,  sy, 0.0, 0.0,
+              0.0, 0.0,  sz, 0.0,
+              0.0, 0.0, 0.0, 1.0);
+}
+
+// Linear transformation to shear a 3D object. 
+mat4 shear(float shx, float shy) {
+  return mat4(1.0, shx, 0.0, 0.0,
+              shy, 1.0, 0.0, 0.0,
+              0.0, 0.0, 1.0, 0.0,
+              0.0, 0.0, 0.0, 1.0);
+}
+
+// Linear transformation to translate the position of a 3D object.
+mat4 translate(float tx, float ty, float tz) {
+  return mat4(1.0, 0.0, 0.0,  tx,
+              0.0, 1.0, 0.0,  ty,
+              0.0, 0.0, 1.0,  tz,
+              0.0, 0.0, 0.0, 1.0);
+}
+
 uniform float uTime; //time in sec
 uniform mat4 uModelViewMatrix;
 uniform mat4 uProjectionMatrix;
@@ -70,7 +97,11 @@ uniform mat4 uModelTransformationMatrix;
 out vec3 vColor;
 
 void main() {
-  gl_Position = uProjectionMatrix * uModelViewMatrix * uModelTransformationMatrix * vec4(aPosition,1.0);
+  vec4 p = vec4(aPosition, 1.0);
+  p = scale(1.0 + 0.15*sin(uTime), 1.0 + 0.15*sin(uTime), 1.0) * p;
+  p = shear(0.2*sin(uTime + 2.0), 0.0) * p;
+  p = translate(0.4*sin(uTime + 4.0), 0.0, 0.0) * p;
+  gl_Position = uProjectionMatrix * uModelViewMatrix * uModelTransformationMatrix * p;
   vColor = aColor;
 }
 </script>
